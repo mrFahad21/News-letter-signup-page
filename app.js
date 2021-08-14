@@ -33,10 +33,10 @@ const data = {
   ]
 };
 var jsonData = JSON.stringify(data);
-const url = "https://us2.api.mailchimp.com/3.0/lists/663a148088"
+const url = process.env.URL;
 const options = {
   method: "POST",
-  auth: "fahad24:92f66ea77fc25fe786996869ca4b24e7-us2"
+  auth: process.env.AUTH
 }
 
 const request = https.request(url, options, function(response){
@@ -54,15 +54,12 @@ request.write(jsonData);
 request.end();
 
 });
-//APIkey
-// 92f66ea77fc25fe786996869ca4b24e7-us2
-//unique id
-//663a148088
+
 app.post("/failure", function(req,res){
   res.redirect("/");
 })
 app.listen(process.env.PORT || 3000, function(){
 
-  console.log("Server is running on 3000");
+  console.log("Server is running!");
 
 });
